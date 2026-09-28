@@ -7,3 +7,9 @@ PLAN
 - Add Python Integration for Cafe Menu
 - Use Only a CSV File instead of a Database for easier coding
 - Complete Other Pages ofc
+
+DEPENDENCIES
+
+- Flask
+- NPX
+- Python3
