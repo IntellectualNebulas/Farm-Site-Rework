@@ -37,23 +37,45 @@
 
         <div class="box">
 
-            <ul id="members"></ul>
+            <ul id="ItemName"></ul>
+            <ul id="ItemPrice"></ul>
 
             <script>
-                async function loadMembers() {
-                    const response = await fetch("http://127.0.0.1:5000/members");
+
+                async function loadMenu() {
+                    const response = await fetch("http://127.0.0.1:5000/menu");
                     const data = await response.json();
 
-                    const list = document.getElementById("members");
+                    const list = document.getElementById("ItemName");
 
-                    data.members.forEach(member => {
+                    data.Foodname.forEach(ItemName => {
                         const item = document.createElement("li");
-                        item.textContent = member;
+                        item.textContent = ItemName;
                         list.appendChild(item);
                     });
                 }
 
-                loadMembers();
+                loadMenu();
+
+            </script>
+
+            <script>
+
+                async function loadPrice() {
+                    const response = await fetch("http://127.0.0.1:5000/menu");
+                    const data = await response.json();
+
+                    const list = document.getElementById("ItemName");
+
+                    data.Drinks.forEach(ItemName => {
+                        const item = document.createElement("li");
+                        item.textContent = ItemName;
+                        list.appendChild(item);
+                    });
+                }
+
+                loadPrice();
+
             </script>
 
         </div>
