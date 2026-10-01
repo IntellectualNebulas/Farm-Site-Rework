@@ -1,0 +1,99 @@
+<html>
+
+    <head>
+
+        <title>CSS Test</title>
+
+        <link rel="stylesheet" type="text/css" href="Style.css">
+
+        <link rel="stylesheet"
+            href="https://pyscript.net/releases/2024.5.1/core.css">
+
+
+    </head>
+
+    <body>
+
+        <div class="nav">
+
+            <a href="Home.html">Home</a>
+            <a href="Cafe.html">Our Cafe</a>
+            <a class="active" href="Shop.html">The Shop</a>
+            <a href="WalksandPlayPark.html">Walks & Playparks</a>
+            <a href="Findus.html">Find Us!</a>
+
+        </div>
+        
+    </head>
+
+        <div class = "main">
+
+            <div class="split-text-container">
+
+                <span class="text-part left">Our </span>
+                <span class="text-part right">Shop </span>
+
+            </div>
+
+        <div class="box">
+
+            <ul id="ItemName"></ul>
+            <ul id="ItemPrice"></ul>
+
+            <script>
+
+                async function loadMenu() {
+                    const response = await fetch("http://127.0.0.1:5000/menu");
+                    const data = await response.json();
+
+                    const list = document.getElementById("ItemName");
+
+                    data.Foodname.forEach(ItemName => {
+                        const item = document.createElement("li");
+                        item.textContent = ItemName;
+                        list.appendChild(item);
+                    });
+                }
+
+                loadMenu();
+
+            </script>
+
+            <script>
+
+                async function loadPrice() {
+                    const response = await fetch("http://127.0.0.1:5000/menu");
+                    const data = await response.json();
+
+                    const list = document.getElementById("ItemName");
+
+                    data.Drinks.forEach(ItemName => {
+                        const item = document.createElement("li");
+                        item.textContent = ItemName;
+                        list.appendChild(item);
+                    });
+                }
+
+                loadPrice();
+
+            </script>
+
+        </div>
+
+    </body>
+
+    <div class = "sidebar">
+    
+    </div>
+
+    <div class = "footer">
+        
+        <p> Murray Farm<br>
+        Contact us at: <br>
+        <a href= "2521394@slc.ac.uk">Our Email</a><br>
+        By Ciaran Bell</p>
+
+    </div>
+
+</html>
+
