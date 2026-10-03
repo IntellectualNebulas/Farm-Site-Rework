@@ -3,9 +3,10 @@ import csv
 from pathlib import Path
 
 app = Flask(__name__)
-FILE_PATH = "Flask-Server/MenuItems.csv"
+FILE_PATHMENU = "Flask-Server/MenuItems.csv"
+FILE_PATHSHOP = "Flask-Server/ShopProducts.csv"
 
-# Members API Route
+# Menu API Route
 @app.route("/menu")
 def Menu():
 
@@ -14,7 +15,7 @@ def Menu():
         Drinks = []
         DrinkPrice = []
 
-        with open(FILE_PATH, mode='r') as file:
+        with open(FILE_PATHMENU, mode='r') as file:
             reader = csv.DictReader(file)
 
             # Empty lists to store column values
@@ -32,6 +33,29 @@ def Menu():
         "Drinks": Drinks,
         "DrinkPrice": DrinkPrice
         })
+
+# Shop API Route
+@app.route("/shop")
+def Shop():
+
+        ShopItem = []
+        ShopPrice = []
+
+        with open(FILE_PATHSHOP, mode='r') as file:
+            reader = csv.DictReader(file)
+
+            # Empty lists to store column values
+
+            # Iterating over each row
+            for row in reader:
+                ShopItem.append(row['ShopItem'])
+                ShopPrice.append(row['ShopPrice'])
+
+        return jsonify({
+        "ShopItem": ShopItem,
+        "ShopPrice": ShopPrice,
+        })
+
 
 if __name__ == "__main__":
     app.run(debug=True)
