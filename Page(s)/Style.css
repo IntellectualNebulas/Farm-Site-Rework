@@ -170,6 +170,23 @@ button:hover{
 
 }
 
+table{
+
+    display: inline-block;
+    text-align: left;
+    text-decoration: none;
+
+    overflow-x: auto;
+}
+
+#ShopTable td {
+    padding: 5px 10px;
+}
+
+#MenuTable td {
+    padding: 5px 10px;
+}
+
 @keyframes slide-in-left {
     0% {
         transform: translateX(-200%);

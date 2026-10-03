@@ -6,10 +6,6 @@
 
         <link rel="stylesheet" type="text/css" href="Style.css">
 
-        <link rel="stylesheet"
-            href="https://pyscript.net/releases/2024.5.1/core.css">
-
-
     </head>
 
     <body>
@@ -35,46 +31,51 @@
 
             </div>
 
+        <div class = "box">
+
+            <p>Just next to our cafe, we have our farm shop. Where you can buy freshly made products made here on the farm!</p>
+
+        </div>
+
         <div class="box">
 
-            <ul id="ItemName"></ul>
-            <ul id="ItemPrice"></ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+
+                <tbody id="ShopTable">
+                </tbody>
+            </table>
 
             <script>
 
-                async function loadMenu() {
-                    const response = await fetch("http://127.0.0.1:5000/menu");
+                async function loadShop() {
+                    const response = await fetch("http://127.0.0.1:5000/shop");
                     const data = await response.json();
 
-                    const list = document.getElementById("ItemName");
+                    const table = document.getElementById("ShopTable");
 
-                    data.Foodname.forEach(ItemName => {
-                        const item = document.createElement("li");
-                        item.textContent = ItemName;
-                        list.appendChild(item);
+                    data.ShopItem.forEach((itemName, index) => {
+                        const row = document.createElement("tr");
+
+                        const itemCell = document.createElement("td");
+                        itemCell.textContent = itemName;
+
+                        const priceCell = document.createElement("td");
+                        priceCell.textContent = data.ShopPrice[index];
+
+                        row.appendChild(itemCell);
+                        row.appendChild(priceCell);
+
+                        table.appendChild(row);
                     });
                 }
 
-                loadMenu();
-
-            </script>
-
-            <script>
-
-                async function loadPrice() {
-                    const response = await fetch("http://127.0.0.1:5000/menu");
-                    const data = await response.json();
-
-                    const list = document.getElementById("ItemName");
-
-                    data.Drinks.forEach(ItemName => {
-                        const item = document.createElement("li");
-                        item.textContent = ItemName;
-                        list.appendChild(item);
-                    });
-                }
-
-                loadPrice();
+                loadShop();
 
             </script>
 
@@ -86,14 +87,13 @@
     
     </div>
 
-    <div class = "footer">
+<div class = "footer">
         
         <p> Murray Farm<br>
         Contact us at: <br>
         <a href= "2521394@slc.ac.uk">Our Email</a><br>
         By Ciaran Bell</p>
 
-    </div>
+</div>
 
 </html>
-

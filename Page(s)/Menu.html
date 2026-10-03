@@ -6,10 +6,6 @@
 
         <link rel="stylesheet" type="text/css" href="Style.css">
 
-        <link rel="stylesheet"
-            href="https://pyscript.net/releases/2024.5.1/core.css">
-
-
     </head>
 
     <body>
@@ -37,8 +33,17 @@
 
         <div class="box">
 
-            <ul id="ItemName"></ul>
-            <ul id="ItemPrice"></ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+
+                <tbody id="MenuTable">
+                </tbody>
+            </table>
 
             <script>
 
@@ -46,35 +51,25 @@
                     const response = await fetch("http://127.0.0.1:5000/menu");
                     const data = await response.json();
 
-                    const list = document.getElementById("ItemName");
+                    const table = document.getElementById("MenuTable");
 
-                    data.Foodname.forEach(ItemName => {
-                        const item = document.createElement("li");
-                        item.textContent = ItemName;
-                        list.appendChild(item);
+                    data.Foodname.forEach((itemName, index) => {
+                        const row = document.createElement("tr");
+
+                        const itemCell = document.createElement("td");
+                        itemCell.textContent = itemName;
+
+                        const priceCell = document.createElement("td");
+                        priceCell.textContent = data.Drinks[index];
+
+                        row.appendChild(itemCell);
+                        row.appendChild(priceCell);
+
+                        table.appendChild(row);
                     });
                 }
 
                 loadMenu();
-
-            </script>
-
-            <script>
-
-                async function loadPrice() {
-                    const response = await fetch("http://127.0.0.1:5000/menu");
-                    const data = await response.json();
-
-                    const list = document.getElementById("ItemName");
-
-                    data.Drinks.forEach(ItemName => {
-                        const item = document.createElement("li");
-                        item.textContent = ItemName;
-                        list.appendChild(item);
-                    });
-                }
-
-                loadPrice();
 
             </script>
 
