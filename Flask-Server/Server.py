@@ -4,7 +4,7 @@ from pathlib import Path
 
 app = Flask(__name__)
 FILE_PATHMENU = "Flask-Server/MenuItems.csv"
-FILE_PATHSHOP = "Flask-Server/ShopProducts.csv"
+FILE_PATHSHOP = "Flask-Server/Shop Products.csv"
 
 # Menu API Route
 @app.route("/menu")
